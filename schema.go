@@ -1,0 +1,21 @@
+package main
+
+var schema = `
+	CREATE TABLE IF NOT EXISTS urls (
+		id SERIAL,
+		location VARCHAR NOT NULL,
+		PRIMARY KEY(id)
+	);
+
+	ALTER TABLE urls ADD COLUMN IF NOT EXISTS active boolean DEFAULT true;
+
+	CREATE TABLE IF NOT EXISTS scans (
+		id SERIAL,
+		url_id INTEGER REFERENCES urls(id) NOT NULL,
+		time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+		up BOOLEAN DEFAULT FALSE,
+		duration BIGINT NOT NULL
+	);
+
+	ALTER TABLE scans ALTER COLUMN time SET DEFAULT NOW();
+`

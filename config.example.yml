@@ -1,0 +1,4 @@
+connection: "user=postgres password=gu410 dbname=minas sslmode=disable"
+audience: ""
+secret: ""
+domain: ""
